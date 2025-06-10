@@ -1,0 +1,23 @@
+kind: Route
+apiVersion: widgets.templates.krateo.io/v1beta1
+metadata:
+  name: dashboard-route
+  namespace: {{ .Release.Namespace }}
+spec:
+  widgetData:
+    items:
+      - resourceRefId: dashboard-templates-panel
+      - resourceRefId: dashboard-compositions-panel
+  resourcesRefs:
+    - id: dashboard-templates-panel
+      apiVersion: widgets.templates.krateo.io/v1beta1
+      name: dashboard-templates-panel
+      namespace: {{ .Release.Namespace }}
+      resource: panels
+      verb: GET
+    - id: dashboard-compositions-panel
+      apiVersion: widgets.templates.krateo.io/v1beta1
+      name: dashboard-compositions-panel
+      namespace: {{ .Release.Namespace }}
+      resource: panels
+      verb: GET

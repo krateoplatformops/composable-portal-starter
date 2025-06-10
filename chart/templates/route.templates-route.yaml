@@ -1,0 +1,26 @@
+kind: Route
+apiVersion: widgets.templates.krateo.io/v1beta1
+metadata:
+  name: templates-route
+  namespace: {{ .Release.Namespace }}
+spec:
+  apiRef:
+    name: templates-panels
+    namespace: {{ .Release.Namespace }}
+  widgetData:
+    items: []
+  widgetDataTemplate:
+    - forPath: items
+      expression: >
+        ${ [ .templatespanels[] | { resourceRefId: .metadata.name, size: 12 } ] }
+  resourcesRefs: []
+  resourcesRefsTemplate:
+    - iterator: ${ .templatespanels }
+      template:
+        id: ${ .metadata.name }
+        apiVersion: ${ .apiVersion }
+        resource: panels
+        namespace: ${ .metadata.namespace }
+        name: ${ .metadata.name }
+        verb: GET
+

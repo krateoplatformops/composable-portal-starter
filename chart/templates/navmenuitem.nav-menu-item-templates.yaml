@@ -1,0 +1,19 @@
+kind: NavMenuItem
+apiVersion: widgets.templates.krateo.io/v1beta1
+metadata:
+  name: nav-menu-item-templates
+  namespace: {{ .Release.Namespace }}
+spec:
+  widgetData:
+    resourceRefId: templates-route
+    label: Templates
+    icon: fa-rectangle-list
+    path: /templates
+    order: 20
+  resourcesRefs:
+    - id: templates-route
+      apiVersion: widgets.templates.krateo.io/v1beta1
+      name: templates-route
+      namespace: {{ .Release.Namespace }}
+      resource: routes
+      verb: GET

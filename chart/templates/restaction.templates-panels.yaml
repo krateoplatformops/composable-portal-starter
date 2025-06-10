@@ -1,0 +1,24 @@
+apiVersion: templates.krateo.io/v1
+kind: RESTAction
+metadata:
+  name: templates-panels
+  namespace: {{ .Release.Namespace }}
+spec:
+  api:
+  - name: namespaces
+    path: "/api/v1/namespaces"
+    filter: "[.items[] | .metadata.name]"
+  - name: templatespanels
+    dependsOn: 
+      name: namespaces
+      iterator: .[]
+    path: ${ "/apis/widgets.templates.krateo.io/v1beta1/namespaces/" + (.) + "/panels" }
+    continueOnError: true
+  filter: >
+    {
+      templatespanels: [
+        (.templatespanels // [])[]
+        | (.items // [])[]
+        | select((.metadata.labels // {}) | .["krateo.io/portal-page"] == "templates")
+      ]
+    }

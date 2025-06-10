@@ -1,0 +1,16 @@
+kind: Route
+apiVersion: widgets.templates.krateo.io/v1beta1
+metadata:
+  name: compositions-route
+  namespace: {{ .Release.Namespace }}
+spec:
+  widgetData:
+    items:
+      - resourceRefId: compositions-row
+  resourcesRefs:
+    - id: compositions-row
+      apiVersion: widgets.templates.krateo.io/v1beta1
+      name: compositions-row
+      namespace: {{ .Release.Namespace }}
+      resource: rows
+      verb: GET

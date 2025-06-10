@@ -1,0 +1,18 @@
+apiVersion: templates.krateo.io/v1
+kind: RESTAction
+metadata:
+  name: sidebar-nav-menu-items
+  # namespace: {{ .Release.Namespace }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  api:
+  - name: namespaces
+    path: "/api/v1/namespaces"
+    filter: "[.items[] | .metadata.name]"
+  - name: navmenuitems
+    continueOnError: true
+    dependsOn: 
+      name: namespaces
+      iterator: .[]
+    path: ${ "/apis/widgets.templates.krateo.io/v1beta1/namespaces/" + (.) + "/navmenuitems" }
+  filter: "{navmenuitems: [.navmenuitems[] | select(.items != null) | .items[]] | sort_by(.spec.widgetData.order)}"

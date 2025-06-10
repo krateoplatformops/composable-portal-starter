@@ -1,0 +1,17 @@
+kind: Panel
+apiVersion: widgets.templates.krateo.io/v1beta1
+metadata:
+  name: dashboard-templates-panel
+  namespace: {{ .Release.Namespace }}
+spec:
+  widgetData:
+    title: Templates
+    items:
+      - resourceRefId: dashboard-templates-panel-row
+  resourcesRefs:
+    - id: dashboard-templates-panel-row
+      apiVersion: widgets.templates.krateo.io/v1beta1
+      name: dashboard-templates-panel-row
+      namespace: {{ .Release.Namespace }}
+      resource: rows
+      verb: GET
