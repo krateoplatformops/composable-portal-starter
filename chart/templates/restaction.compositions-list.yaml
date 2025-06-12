@@ -67,7 +67,7 @@ spec:
               (.allCompositions // [])
               | map((.items // []) | length)
               | add
-            )
+            ) // 0
             - 
             (
               [(.allCompositions // [])[]
