@@ -19,6 +19,6 @@ spec:
       compositionspanels: [
         (.compositionspanels // [])[]
         | (.items // [])[]
-        | select((.metadata.labels // {}) | has("krateo.io/composition-id"))
+        | select((.metadata.labels // {}) | .["krateo.io/portal-page"] == "compositions")
       ]
     }
