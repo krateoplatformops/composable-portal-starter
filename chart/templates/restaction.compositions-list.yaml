@@ -27,20 +27,16 @@ spec:
   filter: >
     {
       total: (
-        (.allCompositions // [])
-        | map((.items // []) | length)
-        | add
-      ) // 0,
+        [.allCompositions[]?.items[]?] | length
+      ),
       data: [
         {
           color: "green",
           value: (
-            [(.allCompositions // [])[]
-              | (.items // [])
-              | .[]
-              | select(((.status // {})?.conditions? // [])
-                | map(select(.type == "Ready" and .status == "True"))
-                | length > 0)
+            [.allCompositions[]?.items[]?
+              | select((.status.conditions // [])
+                  | map(select(.type == "Ready" and .status == "True"))
+                  | length > 0)
             ]
             | length
           ),
@@ -49,12 +45,10 @@ spec:
         {
           color: "orange",
           value: (
-            [(.allCompositions // [])[]
-              | (.items // [])
-              | .[]
-              | select(((.status // {})?.conditions? // [])
-                | map(select(.type == "Ready" and .status == "False"))
-                | length > 0)
+            [.allCompositions[]?.items[]?
+              | select((.status.conditions // [])
+                  | map(select(.type == "Ready" and .status == "False"))
+                  | length > 0)
             ]
             | length
           ),
@@ -63,33 +57,12 @@ spec:
         {
           color: "gray",
           value: (
-            (
-              (.allCompositions // [])
-              | map((.items // []) | length)
-              | add
-            ) // 0
-            - 
-            (
-              [(.allCompositions // [])[]
-                | (.items // [])
-                | .[]
-                | select(((.status // {})?.conditions? // [])
-                  | map(select(.type == "Ready" and .status == "True"))
-                  | length > 0)
-              ]
-              | length
-            )
-            -
-            (
-              [(.allCompositions // [])[]
-                | (.items // [])
-                | .[]
-                | select(((.status // {})?.conditions? // [])
-                  | map(select(.type == "Ready" and .status == "False"))
-                  | length > 0)
-              ]
-              | length
-            )
+            [.allCompositions[]?.items[]?
+              | select((.status.conditions // [])
+                  | map(select(.type == "Ready" and (.status == "True" or .status == "False")))
+                  | length == 0)
+            ]
+            | length
           ),
           label: "Unknown"
         }
