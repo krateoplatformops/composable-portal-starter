@@ -1,16 +1,17 @@
 kind: Route
 apiVersion: widgets.templates.krateo.io/v1beta1
 metadata:
-  name: compositions-route
+  name: composition-tablist-route
   namespace: {{ .Release.Namespace }}
 spec:
   widgetData:
-    items:
-      - resourceRefId: compositions-row
+    path: /compositions/{namespace}/{name}
+    resourceRefId: composition-tablist
   resourcesRefs:
-    - id: compositions-row
+    - id: composition-tablist
       apiVersion: widgets.templates.krateo.io/v1beta1
-      name: compositions-row
-      namespace: {{ .Release.Namespace }}
-      resource: rows
+      name: "{name}-composition-tablist"
+      namespace: "{namespace}"
+      resource: tablists
       verb: GET
+  

@@ -11,9 +11,9 @@ spec:
     path: /templates
     order: 20
   resourcesRefs:
-    - id: templates-route
+    - id: templates-page
       apiVersion: widgets.templates.krateo.io/v1beta1
-      name: templates-route
+      name: templates-page
       namespace: {{ .Release.Namespace }}
-      resource: routes
+      resource: pages
       verb: GET
