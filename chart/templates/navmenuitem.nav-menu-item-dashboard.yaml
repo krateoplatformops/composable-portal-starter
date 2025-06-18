@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   widgetData:
-    resourceRefId: dashboard-route
+    resourceRefId: dashboard-page
     label: Dashboard
     icon: fa-chart-line
     path: /dashboard
