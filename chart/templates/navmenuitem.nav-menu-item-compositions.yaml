@@ -5,15 +5,15 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   widgetData:
-    resourceRefId: compositions-page
+    resourceRefId: compositions-page-datagrid
     label: Compositions
     icon: fa-shapes
     path: /compositions
     order: 30
   resourcesRefs:
-    - id: compositions-page
+    - id: compositions-page-datagrid
       apiVersion: widgets.templates.krateo.io/v1beta1
-      name: compositions-page
+      name: compositions-page-datagrid
       namespace: {{ .Release.Namespace }}
       resource: pages
       verb: GET
