@@ -22,3 +22,6 @@ spec:
         namespace: ${ .metadata.namespace }
         name: ${ .metadata.name }
         verb: GET
+  apiRef:
+    name: compositions-panels
+    namespace: {{ .Release.Namespace }}
