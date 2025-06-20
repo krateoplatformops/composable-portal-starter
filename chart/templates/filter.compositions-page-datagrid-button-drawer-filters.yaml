@@ -7,15 +7,15 @@ spec:
   widgetData:
     prefix: compositions-datagrid-filters
     fields:
-      - label: Composition Name
+      - label: Name
         name: title
         type: string
-      - label: Composition Status
-        name: headerRight
-        type: string
-      - label: Composition Date
+      - label: Status
         name: headerLeft
+        type: string
+      - label: Date
+        name: headerRight
         type: daterange
-      - label: Composition Tags
+      - label: Tags
         name: tags
         type: string

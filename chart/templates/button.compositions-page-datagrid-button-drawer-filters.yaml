@@ -5,16 +5,16 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   widgetData:
-    label: Filters
-    icon: fa-rocket
-    size: small
+    icon: fa-filter
     type: primary
+    size: small
     clickActionId: compositions-page-datagrid-button-drawer-filters
   actions:
     openDrawer:
       - id: compositions-page-datagrid-button-drawer-filters
         resourceRefId: compositions-page-datagrid-button-drawer-filters
         type: openDrawer
+        title: Compositions Filters
   resourcesRefs:
     - id: compositions-page-datagrid-button-drawer-filters
       apiVersion: widgets.templates.krateo.io/v1beta1

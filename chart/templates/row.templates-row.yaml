@@ -2,11 +2,11 @@ kind: Row
 apiVersion: widgets.templates.krateo.io/v1beta1
 metadata:
   name: templates-row
-  namespace: krateo-v2-system
+  namespace: {{ .Release.Namespace }}
 spec:
   apiRef:
     name: templates-panels
-    namespace: krateo-v2-system
+    namespace: {{ .Release.Namespace }}
   widgetData:
     items: []
   widgetDataTemplate:
