@@ -11,8 +11,11 @@ spec:
         name: title
         type: string
       - label: Composition Status
-        name: tooltip
+        name: headerRight
         type: string
+      - label: Composition Date
+        name: headerLeft
+        type: daterange
       - label: Composition Tags
         name: tags
         type: string

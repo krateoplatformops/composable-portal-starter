@@ -1,25 +1,21 @@
-kind: DataGrid
+kind: Row
 apiVersion: widgets.templates.krateo.io/v1beta1
 metadata:
-  name: compositions-page-datagrid
-  namespace: {{ .Release.Namespace }}
+  name: templates-row
+  namespace: krateo-v2-system
 spec:
   apiRef:
-    name: compositions-panels
-    namespace: {{ .Release.Namespace }}
+    name: templates-panels
+    namespace: krateo-v2-system
   widgetData:
-    prefix: compositions-datagrid-filters
-    asGrid: true
-    grid:
-      column: 1
     items: []
   widgetDataTemplate:
     - forPath: items
       expression: >
-        ${ [ .compositionspanels[] | { resourceRefId: .metadata.name, size: 24 } ] }
+        ${ [ .templatespanels[] | { resourceRefId: .metadata.name, size: 12 } ] }
   resourcesRefs: []
   resourcesRefsTemplate:
-    - iterator: ${ .compositionspanels }
+    - iterator: ${ .templatespanels }
       template:
         id: ${ .metadata.name }
         apiVersion: ${ .apiVersion }

@@ -4,23 +4,13 @@ metadata:
   name: templates-page
   namespace: {{ .Release.Namespace }}
 spec:
-  apiRef:
-    name: templates-panels
-    namespace: {{ .Release.Namespace }}
   widgetData:
-    items: []
-  widgetDataTemplate:
-    - forPath: items
-      expression: >
-        ${ [ .templatespanels[] | { resourceRefId: .metadata.name, size: 12 } ] }
-  resourcesRefs: []
-  resourcesRefsTemplate:
-    - iterator: ${ .templatespanels }
-      template:
-        id: ${ .metadata.name }
-        apiVersion: ${ .apiVersion }
-        resource: panels
-        namespace: ${ .metadata.namespace }
-        name: ${ .metadata.name }
-        verb: GET
-
+    items:
+      - resourceRefId: templates-row
+  resourcesRefs:
+    - id: templates-row
+      apiVersion: widgets.templates.krateo.io/v1beta1
+      name: templates-row
+      namespace: {{ .Release.Namespace }}
+      resource: rows
+      verb: GET
