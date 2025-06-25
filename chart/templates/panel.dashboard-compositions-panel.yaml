@@ -5,6 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   widgetData:
+    actions: {}
     title: Compositions
     items:
       - resourceRefId: dashboard-compositions-panel-row

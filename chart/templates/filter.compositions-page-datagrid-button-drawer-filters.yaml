@@ -8,14 +8,18 @@ spec:
     prefix: compositions-datagrid-filters
     fields:
       - label: Name
-        name: title
+        name: 
+        - title
         type: string
       - label: Status
-        name: headerLeft
+        name: 
+        - headerLeft
         type: string
       - label: Date
-        name: headerRight
+        name: 
+        - headerRight
         type: daterange
       - label: Tags
-        name: tags
+        name: 
+        - tags
         type: string
