@@ -5,6 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   widgetData:
+    actions: {}
     title: Templates
     items:
       - resourceRefId: dashboard-templates-panel-row
