@@ -1,21 +1,21 @@
 kind: Row
 apiVersion: widgets.templates.krateo.io/v1beta1
 metadata:
-  name: templates-row
+  name: blueprints-row
   namespace: {{ .Release.Namespace }}
 spec:
   apiRef:
-    name: templates-panels
+    name: blueprints-panels
     namespace: {{ .Release.Namespace }}
   widgetData:
     items: []
   widgetDataTemplate:
     - forPath: items
       expression: >
-        ${ [ .templatespanels[] | { resourceRefId: .metadata.name, size: 12 } ] }
+        ${ [ .blueprintspanels[] | { resourceRefId: .metadata.name, size: 12 } ] }
   resourcesRefs: []
   resourcesRefsTemplate:
-    - iterator: ${ .templatespanels }
+    - iterator: ${ .blueprintspanels }
       template:
         id: ${ .metadata.name }
         apiVersion: ${ .apiVersion }

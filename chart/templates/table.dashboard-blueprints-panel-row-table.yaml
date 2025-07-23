@@ -1,11 +1,11 @@
 apiVersion: widgets.templates.krateo.io/v1beta1
 kind: Table
 metadata:
-  name: dashboard-templates-panel-row-table
+  name: dashboard-blueprints-panel-row-table
   namespace: {{ .Release.Namespace }}
 spec:
   apiRef:
-    name: dashboard-templates-panel
+    name: dashboard-blueprints-panel
     namespace: {{ .Release.Namespace }}
   widgetData:
     columns:
@@ -23,5 +23,5 @@ spec:
     - forPath: data
       expression: ${ .list }
   apiRef:
-    name: templates-list
+    name: blueprints-list
     namespace: {{ .Release.Namespace }}

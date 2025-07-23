@@ -14,4 +14,15 @@ spec:
       name: namespaces
       iterator: .[]
     path: ${ "/apis/widgets.templates.krateo.io/v1beta1/namespaces/" + (.) + "/routes" }
-  filter: "{routes: [.routes[] | select(.items != null) | .items[]]}"
+  filter: >
+    {
+      routes: (
+        if (.routes | type) == "array" then
+          [.routes[]?.items[]?]
+        elif (.routes | type) == "object" then
+          [.routes.items[]?]
+        else
+          []
+        end
+      )
+    }

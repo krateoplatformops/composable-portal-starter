@@ -16,9 +16,13 @@ spec:
     continueOnError: true
   filter: >
     {
-      compositionspanels: [
-        (.compositionspanels // [])[]
-        | (.items // [])[]
-        | select((.metadata.labels // {}) | .["krateo.io/portal-page"] == "compositions")
-      ]
+      compositionspanels: (
+        if (.compositionspanels | type) == "array" then
+          [.compositionspanels[]?.items[]? | select((.metadata.labels // {})["krateo.io/portal-page"] == "compositions")]
+        elif (.compositionspanels | type) == "object" then
+          [.compositionspanels.items[]? | select((.metadata.labels // {})["krateo.io/portal-page"] == "compositions")]
+        else
+          []
+        end
+      )
     }

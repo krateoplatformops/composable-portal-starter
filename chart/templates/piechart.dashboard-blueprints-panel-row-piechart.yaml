@@ -1,11 +1,11 @@
 apiVersion: widgets.templates.krateo.io/v1beta1
 kind: PieChart
 metadata:
-  name: dashboard-templates-panel-row-piechart
+  name: dashboard-blueprints-panel-row-piechart
   namespace: {{ .Release.Namespace }}
 spec:
   widgetData:
-    description: Templates
+    description: Blueprints
     series:
       data: []
       total: 0
@@ -18,5 +18,5 @@ spec:
     - forPath: title
       expression: ${ .total | tostring }
   apiRef:
-    name: templates-list
+    name: blueprints-list
     namespace: {{ .Release.Namespace }}

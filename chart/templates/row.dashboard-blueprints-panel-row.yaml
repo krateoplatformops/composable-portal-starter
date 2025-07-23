@@ -1,25 +1,25 @@
 kind: Row
 apiVersion: widgets.templates.krateo.io/v1beta1
 metadata:
-  name: dashboard-templates-panel-row
+  name: dashboard-blueprints-panel-row
   namespace: {{ .Release.Namespace }}
 spec:
   widgetData:
     items:
-      - resourceRefId: dashboard-templates-panel-row-piechart
+      - resourceRefId: dashboard-blueprints-panel-row-piechart
         size: 6
-      - resourceRefId: dashboard-templates-panel-row-piechart-table
+      - resourceRefId: dashboard-blueprints-panel-row-piechart-table
         size: 18
   resourcesRefs:
-    - id: dashboard-templates-panel-row-piechart
+    - id: dashboard-blueprints-panel-row-piechart
       apiVersion: widgets.templates.krateo.io/v1beta1
-      name: dashboard-templates-panel-row-piechart
+      name: dashboard-blueprints-panel-row-piechart
       namespace: {{ .Release.Namespace }}
       resource: piecharts
       verb: GET
-    - id: dashboard-templates-panel-row-piechart-table
+    - id: dashboard-blueprints-panel-row-piechart-table
       apiVersion: widgets.templates.krateo.io/v1beta1
-      name: dashboard-templates-panel-row-table
+      name: dashboard-blueprints-panel-row-table
       namespace: {{ .Release.Namespace }}
       resource: tables
       verb: GET
