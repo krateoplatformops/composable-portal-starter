@@ -1,19 +1,19 @@
 kind: NavMenuItem
 apiVersion: widgets.templates.krateo.io/v1beta1
 metadata:
-  name: nav-menu-item-templates
+  name: nav-menu-item-blueprints
   namespace: {{ .Release.Namespace }}
 spec:
   widgetData:
-    resourceRefId: templates-page
-    label: Templates
+    resourceRefId: blueprints-page
+    label: Blueprints
     icon: fa-rectangle-list
-    path: /templates
+    path: /blueprints
     order: 20
   resourcesRefs:
-    - id: templates-page
+    - id: blueprints-page
       apiVersion: widgets.templates.krateo.io/v1beta1
-      name: templates-page
+      name: blueprints-page
       namespace: {{ .Release.Namespace }}
       resource: pages
       verb: GET

@@ -1,16 +1,16 @@
 kind: Page
 apiVersion: widgets.templates.krateo.io/v1beta1
 metadata:
-  name: templates-page
+  name: blueprints-page
   namespace: {{ .Release.Namespace }}
 spec:
   widgetData:
     items:
-      - resourceRefId: templates-row
+      - resourceRefId: blueprints-row
   resourcesRefs:
-    - id: templates-row
+    - id: blueprints-row
       apiVersion: widgets.templates.krateo.io/v1beta1
-      name: templates-row
+      name: blueprints-row
       namespace: {{ .Release.Namespace }}
       resource: rows
       verb: GET
