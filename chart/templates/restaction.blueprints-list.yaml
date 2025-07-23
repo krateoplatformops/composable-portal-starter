@@ -1,37 +1,27 @@
 apiVersion: templates.krateo.io/v1
 kind: RESTAction
 metadata:
-  name: compositions-list
+  name: blueprints-list
   namespace: {{ .Release.Namespace }}
 spec:
   api:
-  - name: allNamespacesAndCrds
-    path: "/call?apiVersion=templates.krateo.io%2Fv1&resource=restactions&name=compositions-get-ns-and-crd&namespace={{ .Release.Namespace }}"
-    verb: GET
-    endpointRef:
-      name: snowplow-endpoint
-      namespace: {{ .Release.Namespace }}
-    headers:
-    - 'Accept: application/json'
-    continueOnError: true
-    errorKey: allNamespacesAndCrdsError
-    exportJwt: true
-  - name: allCompositions
-    dependsOn: 
-      name: allNamespacesAndCrds
-      iterator: ".allNamespacesAndCrds.status"
-    path: ${ "/apis/composition.krateo.io/" + (.version) + "/namespaces/" + (.namespace) + "/" + (.plural) }
-    verb: GET 
-    continueOnError: true
-    errorKey: allCompositionsError
+  - filter: '[.items[] | .metadata.name]'
+    name: namespaces
+    path: /api/v1/namespaces
+  - continueOnError: true
+    dependsOn:
+      iterator: .[]
+      name: namespaces
+    name: allCompositionDefinitions
+    path: ${ "/apis/core.krateo.io/v1alpha1/namespaces/" + (.) + "/compositiondefinitions"}
   filter: >
     {
       total: (
         (
-          if (.allCompositions | type) == "array" then
-            [.allCompositions[]?.items[]?]
-          elif (.allCompositions | type) == "object" then
-            [.allCompositions.items[]?]
+          if (.allCompositionDefinitions | type) == "array" then
+            [.allCompositionDefinitions[]?.items[]?]
+          elif (.allCompositionDefinitions | type) == "object" then
+            [.allCompositionDefinitions.items[]?]
           else
             []
           end
@@ -42,10 +32,10 @@ spec:
           color: "green",
           value: (
             (
-              if (.allCompositions | type) == "array" then
-                [.allCompositions[]?.items[]?]
-              elif (.allCompositions | type) == "object" then
-                [.allCompositions.items[]?]
+              if (.allCompositionDefinitions | type) == "array" then
+                [.allCompositionDefinitions[]?.items[]?]
+              elif (.allCompositionDefinitions | type) == "object" then
+                [.allCompositionDefinitions.items[]?]
               else
                 []
               end
@@ -60,10 +50,10 @@ spec:
           color: "orange",
           value: (
             (
-              if (.allCompositions | type) == "array" then
-                [.allCompositions[]?.items[]?]
-              elif (.allCompositions | type) == "object" then
-                [.allCompositions.items[]?]
+              if (.allCompositionDefinitions | type) == "array" then
+                [.allCompositionDefinitions[]?.items[]?]
+              elif (.allCompositionDefinitions | type) == "object" then
+                [.allCompositionDefinitions.items[]?]
               else
                 []
               end
@@ -78,10 +68,10 @@ spec:
           color: "gray",
           value: (
             (
-              if (.allCompositions | type) == "array" then
-                [.allCompositions[]?.items[]?]
-              elif (.allCompositions | type) == "object" then
-                [.allCompositions.items[]?]
+              if (.allCompositionDefinitions | type) == "array" then
+                [.allCompositionDefinitions[]?.items[]?]
+              elif (.allCompositionDefinitions | type) == "object" then
+                [.allCompositionDefinitions.items[]?]
               else
                 []
               end
@@ -95,10 +85,10 @@ spec:
       ],
       list: (
         (
-          if (.allCompositions | type) == "array" then
-            [.allCompositions[]?.items[]?]
-          elif (.allCompositions | type) == "object" then
-            [.allCompositions.items[]?]
+          if (.allCompositionDefinitions | type) == "array" then
+            [.allCompositionDefinitions[]?.items[]?]
+          elif (.allCompositionDefinitions | type) == "object" then
+            [.allCompositionDefinitions.items[]?]
           else
             []
           end
@@ -119,3 +109,5 @@ spec:
         | reverse)
       )
     }
+
+
