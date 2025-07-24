@@ -6,12 +6,12 @@ metadata:
 spec:
   widgetData:
     items:
-      - resourceRefId: dashboard-templates-panel
+      - resourceRefId: dashboard-blueprints-panel
       - resourceRefId: dashboard-compositions-panel
   resourcesRefs:
-    - id: dashboard-templates-panel
+    - id: dashboard-blueprints-panel
       apiVersion: widgets.templates.krateo.io/v1beta1
-      name: dashboard-templates-panel
+      name: dashboard-blueprints-panel
       namespace: {{ .Release.Namespace }}
       resource: panels
       verb: GET
